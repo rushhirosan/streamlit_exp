@@ -12,10 +12,10 @@ scopes = [
 ]
 
 # サービスアカウントのJSONファイルを使用して認証情報を作成
-creds = Credentials.from_service_account_file(
-    'env/my-project-eiken-587808610231.json',
-    scopes=scopes
-)
+service_account_info = st.secrets["gcp_service_account"]
+
+# 認証情報を作成
+creds = Credentials.from_service_account_info(service_account_info, scopes=scopes)
 
 # gspreadクライアントを作成
 client = gspread.authorize(creds)
